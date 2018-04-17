@@ -56,6 +56,10 @@ module Vendr
       expect(@inventory.current[:coins][:two_pence]).to eq(45)
     end
 
+    it "won't allow coins to be decremented below zero" do
+      expect { @inventory.decrement_coin(:two_pence, 100) }.to raise_error(RangeError)
+    end
+
     it "increments the products by one" do
       @inventory.increment_product(:crisps)
 
@@ -78,6 +82,10 @@ module Vendr
       @inventory.decrement_product(:crisps, 5)
 
       expect(@inventory.current[:products][:crisps]).to eq(45)
+    end
+
+    it "won't allow products to be decremented below zero" do
+      expect { @inventory.decrement_product(:crisps, 100) }.to raise_error(RangeError)
     end
   end
 end

@@ -1,7 +1,7 @@
 module Vendr
   RSpec.describe Calculator do
     it "throws an error if we're missing arguments" do
-      expect { Calculator.new }.to raise_error(ArgumentError)
+      expect { Calculator.new([ :fifty_pence ], { five_pence: 2 }, nil) }.to raise_error(ArgumentError)
     end
 
     it "returns an empty array if correct coins are provided" do

@@ -60,7 +60,7 @@ module Vendr
     def decrement(collection, item, quantity)
       collection[item] ||= 0
 
-      if collection[item] == 0
+      if (collection[item] - quantity) < 0
         raise RangeError.new("Cannot have a negative number of items")
       end
 
