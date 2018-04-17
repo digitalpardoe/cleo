@@ -4,6 +4,9 @@ module Vendr
   class Coin
     attr_reader :name, :value
 
+    # The name field didn't end up getting used in this particular
+    # implementation but it could be useful in an implementation with a more
+    # fleshed out data model
     def initialize(name, value)
       @name = name
       @value = value

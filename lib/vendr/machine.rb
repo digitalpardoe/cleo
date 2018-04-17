@@ -57,6 +57,9 @@ module Vendr
       { product: @selected_product, change: return_coins }
     end
 
+    # Returns the current contents of the machine, as this is a library we
+    # return the available coins too but in a real-life situation we'd
+    # probably just want to return the product stocking to publicly
     def inventory
       raise MachineNotLoadedError if @inventory.nil?
       @inventory.current

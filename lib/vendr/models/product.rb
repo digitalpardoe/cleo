@@ -4,6 +4,9 @@ module Vendr
   class Product
     attr_reader :name, :price
 
+    # The name field didn't end up getting used in this particular
+    # implementation but it could be useful in an implementation with a more
+    # fleshed out data model
     def initialize(name, price)
       @name = name
       @price = price
