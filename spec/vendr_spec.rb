@@ -60,7 +60,7 @@ module Vendr
       expect(@machine.vend).to eq({ product: :water, change: [:one_pound, :twenty_pence, :five_pence] })
     end
 
-    it "performs as expcted for multuple items" do
+    it "performs as expected for multiple items" do
       @machine.select_product(:water)
       @machine.insert_coin(:two_pounds)
 

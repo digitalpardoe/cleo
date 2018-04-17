@@ -81,5 +81,20 @@ module Vendr
       expect(@machine.instance_variable_get(:@inserted_coins)).to eq(nil)
       expect(@machine.instance_variable_get(:@selected_product)).to eq(nil)
     end
+
+    it "throws and error if sufficient change is not inserted" do
+      @machine.select_product(:crisps)
+
+      @machine.insert_coin(:twenty_pence)
+      @machine.insert_coin(:twenty_pence)
+
+      expect { @machine.vend }.to raise_error(IncorrectPaymentError)
+    end
+
+    it "reloads the machine and updates the inventory as expected" do
+      @machine.reload(coins: { fifty_pence: 10, five_pence: 10, two_pence: 10 }, products: { sweets: 50 })
+
+      expect(@machine.inventory).to eq(coins: { fifty_pence: 60, five_pence: 60, two_pence: 60 }, products: { crisps: 50, sweets: 50 })
+    end
   end
 end
